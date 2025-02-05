@@ -2,14 +2,25 @@ import React, { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "./firebaase.config";
 
 
 const Login = () => {
     const { signInUser } = useContext(AuthContext)
 
-    //   const handleGoogleSignIn = () => {
-    //     console.log("Google Sign-In clicked");
-    //   };
+      const handleGoogleSignIn = () => {
+
+        const googleProvider = new GoogleAuthProvider
+
+        signInWithPopup(auth, googleProvider)
+        .then(result=>{
+            console.log(result.user);
+        })
+        .catch(error=>{
+            console.log(error.message);
+        })
+      };
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -80,13 +91,13 @@ const Login = () => {
 
                 <div className="divider mt-6 text-gray-500">OR</div>
 
-                {/* <button
+                <button
                     onClick={handleGoogleSignIn}
                     className="w-full py-3 flex items-center justify-center gap-2 bg-red-500 text-white rounded-lg hover:bg-red-600 mt-4"
                 >
                     <FaGoogle />
                     Sign in with Google
-                </button> */}
+                </button>
             </div>
         </div>
     );
