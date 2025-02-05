@@ -6,9 +6,11 @@ import AllVisas from "./Components/AllVisas";
 import AddVisa from "./Components/AddVisa";
 import MyAddedVisa from "./Components/MyAddedVisa";
 import MyVisaApplication from "./Components/MyVisaApplication";
-import Authentication from "./Components/Authentication";
 import Root from "./Pages/Root";
 import ErrorPage from "./Components/ErrorPage";
+import AuthProvider from "./Auth/AuthProvider";
+import Login from "./Auth/Login";
+import Register from "./Auth/Register";
 
 
 const router = createBrowserRouter([
@@ -18,7 +20,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/all-visas", element: <AllVisas></AllVisas>},
+      { path: "/all-visas", element: <AllVisas></AllVisas> },
       {
         path: "/add-visa",
         element: <AddVisa></AddVisa>,
@@ -31,11 +33,20 @@ const router = createBrowserRouter([
         path: "/my-visa-applications",
         element: <MyVisaApplication></MyVisaApplication>,
       },
-      { path: "/login", element: <Authentication></Authentication> },
+      {
+        path: "/login", element:
+          <Login></Login>
+      },
+      {
+        path: "/register",
+        element: <Register></Register>
+      },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <AuthProvider>
+    <RouterProvider router={router} />
+  </AuthProvider>
 );
