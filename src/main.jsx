@@ -8,12 +8,14 @@ import MyAddedVisa from "./Components/MyAddedVisa";
 import MyVisaApplication from "./Components/MyVisaApplication";
 import Authentication from "./Components/Authentication";
 import Root from "./Pages/Root";
+import ErrorPage from "./Components/ErrorPage";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       { path: "/", element: <Home /> },
       { path: "/all-visas", element: <AllVisas></AllVisas>},
