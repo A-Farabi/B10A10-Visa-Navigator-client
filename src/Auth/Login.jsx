@@ -39,7 +39,7 @@ const Login = () => {
             .then((result) => {
                 console.log(result.user);
                 // Success toast
-                toast.success("Successfully logged in!");
+                toast.success("Successfully logged in! with email");
             })
             .catch((error) => {
                 console.log(error.message);

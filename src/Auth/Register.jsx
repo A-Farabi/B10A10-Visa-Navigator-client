@@ -1,22 +1,36 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AuthContext } from "./AuthProvider";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
+  const [passwordError, setPasswordError] = useState("");
+
+  const validatePassword = (password) => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+    return regex.test(password);
+  };
 
   const handleSignUp = (e) => {
     e.preventDefault();
+    setPasswordError("");
 
     const name = e.target.name.value;
     const email = e.target.email.value;
     const photoUrl = e.target.photoUrl.value;
     const password = e.target.password.value;
 
-    console.log("sign up", name, email, photoUrl, password);
+    // Password validation
+    if (!validatePassword(password)) {
+      setPasswordError(
+        "Password must contain at least 6 characters, including an uppercase and a lowercase letter."
+      );
+      return;
+    }
 
     createUser(email, password)
       .then((result) => {
         console.log("User created successfully:", result.user);
+        
       })
       .catch((error) => {
         console.log("Error creating user:", error);
@@ -84,6 +98,9 @@ const Register = () => {
                   className="input input-bordered"
                   required
                 />
+                {passwordError && (
+                  <p className="text-red-500 text-sm mt-2">{passwordError}</p>
+                )}
               </div>
 
               <div className="form-control mt-6">
