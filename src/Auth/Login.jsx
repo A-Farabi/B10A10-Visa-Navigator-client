@@ -5,22 +5,28 @@ import { AuthContext } from "./AuthProvider";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "./firebaase.config";
 
+// Import React Toastify
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-    const { signInUser } = useContext(AuthContext)
+    const { signInUser } = useContext(AuthContext);
 
-      const handleGoogleSignIn = () => {
-
-        const googleProvider = new GoogleAuthProvider
+    const handleGoogleSignIn = () => {
+        const googleProvider = new GoogleAuthProvider();
 
         signInWithPopup(auth, googleProvider)
-        .then(result=>{
-            console.log(result.user);
-        })
-        .catch(error=>{
-            console.log(error.message);
-        })
-      };
+            .then((result) => {
+                console.log(result.user);
+                // Success toast
+                toast.success("Successfully signed in with Google!");
+            })
+            .catch((error) => {
+                console.log(error.message);
+                // Error toast
+                toast.error("Error during Google sign-in: " + error.message);
+            });
+    };
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -30,14 +36,18 @@ const Login = () => {
         console.log("Email:", email, "Password:", password);
 
         signInUser(email, password)
-            .then(result => {
+            .then((result) => {
                 console.log(result.user);
+                // Success toast
+                toast.success("Successfully logged in!");
             })
-            .catch(error => {
+            .catch((error) => {
                 console.log(error.message);
-            })
+                // Error toast
+                toast.error("Login failed: " + error.message);
+            });
 
-        e.target.reset()
+        e.target.reset();
     };
 
     return (
@@ -99,6 +109,9 @@ const Login = () => {
                     Sign in with Google
                 </button>
             </div>
+
+            {/* Toast Container */}
+            <ToastContainer />
         </div>
     );
 };
