@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../Auth/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
   const navItems = [
     { name: "Home", path: "/" },
     { name: "All Visas", path: "/all-visas" },
@@ -9,6 +12,15 @@ const Navbar = () => {
     { name: "My Added Visas", path: "/my-added-visas" },
     { name: "My Visa Applications", path: "/my-visa-applications" },
   ];
+
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      console.log("User logged out successfully");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
 
   return (
     <div className="navbar bg-base-200 shadow-lg">
@@ -23,10 +35,18 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
             </svg>
           </label>
-          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52">
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52"
+          >
             {navItems.map((item) => (
               <li key={item.name}>
                 <NavLink
@@ -66,9 +86,25 @@ const Navbar = () => {
 
       {/* Navbar End */}
       <div className="navbar-end">
-        <NavLink to="/login" className="btn btn-outline btn-primary">
-          Login/Register
-        </NavLink>
+        {user ? (
+          <div className="flex items-center gap-4">
+            <img
+              src={user.photoURL || "https://via.placeholder.com/150"}
+              alt="User Avatar"
+              className="w-10 h-10 rounded-full object-cover border"
+            />
+            <button
+              onClick={handleLogout}
+              className="btn btn-outline btn-error"
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <NavLink to="/login" className="btn btn-outline btn-primary">
+            Login/Register
+          </NavLink>
+        )}
       </div>
     </div>
   );

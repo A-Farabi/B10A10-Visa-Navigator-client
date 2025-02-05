@@ -10,25 +10,25 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-    const { signInUser } = useContext(AuthContext);
+    const { signInUser, googleLogin } = useContext(AuthContext);
 
-    const handleGoogleSignIn = () => {
-        const googleProvider = new GoogleAuthProvider();
+    // const handleGoogleSignIn = () => {
+    //     const googleProvider = new GoogleAuthProvider();
 
-        signInWithPopup(auth, googleProvider)
-            .then((result) => {
-                console.log(result.user);
-                // Success toast
-                toast.success("Successfully signed in with Google!");
-            })
-            .catch((error) => {
-                console.log(error.message);
-                // Error toast
-                toast.error("Error during Google sign-in: " + error.message);
-            });
-    };
+    //     signInWithPopup(auth, googleProvider)
+    //         .then((result) => {
+    //             console.log(result.user);
+    //             // Success toast
+    //             toast.success("Successfully signed in with Google!");
+    //         })
+    //         .catch((error) => {
+    //             console.log(error.message);
+    //             // Error toast
+    //             toast.error("Error during Google sign-in: " + error.message);
+    //         });
+    // };
 
-    const handleRegister = (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
@@ -56,7 +56,7 @@ const Login = () => {
                 <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
                     Login to Your Account
                 </h2>
-                <form onSubmit={handleRegister}>
+                <form onSubmit={handleLogin}>
                     <div className="mb-4">
                         <label className="block text-sm font-semibold text-gray-700 mb-1">
                             Email
@@ -102,7 +102,7 @@ const Login = () => {
                 <div className="divider mt-6 text-gray-500">OR</div>
 
                 <button
-                    onClick={handleGoogleSignIn}
+                    onClick={googleLogin}
                     className="w-full py-3 flex items-center justify-center gap-2 bg-red-500 text-white rounded-lg hover:bg-red-600 mt-4"
                 >
                     <FaGoogle />

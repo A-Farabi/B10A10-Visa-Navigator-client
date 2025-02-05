@@ -1,8 +1,11 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "./AuthProvider";
+import { Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { FaGoogle } from "react-icons/fa";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, googleLogin, updateUserProfile } = useContext(AuthContext);
   const [passwordError, setPasswordError] = useState("");
 
   const validatePassword = (password) => {
@@ -30,12 +33,17 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         console.log("User created successfully:", result.user);
-        
+
       })
       .catch((error) => {
         console.log("Error creating user:", error);
       });
+
+    updateUserProfile(name, photoUrl)
+
+    e.target.reset()
   };
+
 
   return (
     <div>
@@ -107,6 +115,17 @@ const Register = () => {
                 <button className="btn btn-primary">Register</button>
               </div>
             </form>
+
+
+            <div className="flex justify-center -mt-8">
+              <button
+                onClick={googleLogin}
+                className="px-20 py-3 flex items-center justify-center gap-2 bg-red-500 text-white rounded-lg hover:bg-red-600 mt-4"
+              >
+                <FaGoogle />
+                Sign in with Google
+              </button>
+            </div>
 
             <p className="text-center pb-7 text-sm">
               Already a user?{" "}
