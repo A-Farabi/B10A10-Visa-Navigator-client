@@ -91,7 +91,7 @@ const Register = () => {
               </div>
             </form>
 
-            <p className="text-center mt-4 text-sm">
+            <p className="text-center pb-7 text-sm">
               Already a user?{" "}
               <a href="/login" className="link link-primary">
                 Please sign in.

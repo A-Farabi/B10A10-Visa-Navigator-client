@@ -36,6 +36,8 @@ const Login = () => {
               className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400"
               required
             />
+
+            <span className="text-sm link-primary mt-2">Forgot Password?</span>
           </div>
           <button
             type="submit"
