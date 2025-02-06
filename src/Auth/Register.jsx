@@ -30,16 +30,24 @@ const Register = () => {
       return;
     }
 
-    createUser(email, password)
-      .then((result) => {
-        console.log("User created successfully:", result.user);
+    try {
+      createUser(email, password)
+        .then((result) => {
+          console.log("User created successfully:", result.user);
 
-      })
-      .catch((error) => {
-        console.log("Error creating user:", error);
-      });
+        })
+        .catch((error) => {
+          console.log("Error creating user:", error);
+        });
 
-    updateUserProfile(name, photoUrl)
+      updateUserProfile(name, photoUrl)
+
+      Navigate("/")
+
+    }
+    catch {
+
+    }
 
     e.target.reset()
   };
