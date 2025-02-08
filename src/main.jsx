@@ -11,6 +11,7 @@ import ErrorPage from "./Components/ErrorPage";
 import AuthProvider from "./Auth/AuthProvider";
 import Login from "./Auth/Login";
 import Register from "./Auth/Register";
+import PrivateRoutes from "./Auth/PrivateRoutes";
 
 
 
@@ -24,15 +25,15 @@ const router = createBrowserRouter([
       { path: "/all-visas", element: <AllVisas></AllVisas> },
       {
         path: "/add-visa",
-        element: <AddVisa></AddVisa>,
+        element: <PrivateRoutes><AddVisa></AddVisa></PrivateRoutes>,
       },
       {
         path: "/my-added-visas",
-        element: <MyAddedVisa></MyAddedVisa>,
+        element: <PrivateRoutes><MyAddedVisa></MyAddedVisa></PrivateRoutes>,
       },
       {
         path: "/my-visa-applications",
-        element: <MyVisaApplication></MyVisaApplication>,
+        element: <PrivateRoutes><MyVisaApplication></MyVisaApplication></PrivateRoutes>,
       },
       {
         path: "/login", element:

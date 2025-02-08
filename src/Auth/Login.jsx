@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, Navigate, replace, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "./firebaase.config";
@@ -11,35 +11,22 @@ import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
     const { signInUser, googleLogin } = useContext(AuthContext);
-
-    // const handleGoogleSignIn = () => {
-    //     const googleProvider = new GoogleAuthProvider();
-
-    //     signInWithPopup(auth, googleProvider)
-    //         .then((result) => {
-    //             console.log(result.user);
-    //             // Success toast
-    //             toast.success("Successfully signed in with Google!");
-    //         })
-    //         .catch((error) => {
-    //             console.log(error.message);
-    //             // Error toast
-    //             toast.error("Error during Google sign-in: " + error.message);
-    //         });
-    // };
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/"
 
     const handleLogin = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        console.log("Email:", email, "Password:", password);
 
         signInUser(email, password)
             .then((result) => {
                 console.log(result.user);
                 // Success toast
                 toast.success("Successfully logged in! with email");
+                navigate(from, {replace:true})
             })
             .catch((error) => {
                 console.log(error.message);
