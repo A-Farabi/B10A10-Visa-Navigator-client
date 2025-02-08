@@ -1,35 +1,44 @@
 import React from "react";
+import Swal from "sweetalert2";
 
 const AddVisa = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const formData = {};
     const formElements = e.target.elements;
-
+  
     for (let element of formElements) {
       if (element.name) {
-        // Handle checkboxes
         if (element.type === "checkbox") {
           if (!formData[element.name]) formData[element.name] = [];
           if (element.checked) formData[element.name].push(element.value);
         } else {
           formData[element.name] = element.value.trim();
         }
-
-        // Check for required fields
         if (!element.value.trim() && element.required) {
           alert(`Please fill in the ${element.name} field.`);
           return;
         }
       }
     }
-
-    console.log("Visa Details Submitted:", formData);
-    alert("Visa added successfully!");
-    
-    // Reset the form after successful submission
-    e.target.reset();
+  
+    fetch('http://localhost:5000/Visa', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(formData),
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Visa Added Successfully",
+            icon: "success",
+            draggable: true,
+          });
+          e.target.reset();
+        }
+      })
+      .catch(err => Swal.fire("Failed to submit the form!", err.message, "error"));
   };
 
   return (
