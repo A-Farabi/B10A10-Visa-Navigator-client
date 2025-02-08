@@ -12,6 +12,7 @@ import AuthProvider from "./Auth/AuthProvider";
 import Login from "./Auth/Login";
 import Register from "./Auth/Register";
 import PrivateRoutes from "./Auth/PrivateRoutes";
+import VisaDetail from "./Components/VisaDetail";
 
 
 
@@ -45,6 +46,12 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>
+      },
+      {
+        path: "/visadetail/:id",
+        element: <PrivateRoutes>
+          <VisaDetail></VisaDetail>
+        </PrivateRoutes>
       },
     ],
   },

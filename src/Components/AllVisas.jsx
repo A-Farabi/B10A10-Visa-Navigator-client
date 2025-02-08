@@ -29,7 +29,7 @@ const AllVisas = () => {
             <p>Fee: {visa?.fee} BDT</p>
             <p>Age Restriction: {visa?.ageRestriction}+</p>
             <Link
-              to={`/visa/${visa?._id}`}
+              to={`/visadetail/${visa?._id}`}
               className="inline-block mt-3 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700"
             >
               See Details
