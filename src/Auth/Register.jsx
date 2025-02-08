@@ -1,12 +1,16 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "./AuthProvider";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaGoogle } from "react-icons/fa";
 
 const Register = () => {
   const { createUser, googleLogin, updateUserProfile } = useContext(AuthContext);
   const [passwordError, setPasswordError] = useState("");
+
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/"
 
   const validatePassword = (password) => {
     const regex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
@@ -34,7 +38,7 @@ const Register = () => {
       createUser(email, password)
         .then((result) => {
           console.log("User created successfully:", result.user);
-
+          navigate(from, {replace:true})
         })
         .catch((error) => {
           console.log("Error creating user:", error);
