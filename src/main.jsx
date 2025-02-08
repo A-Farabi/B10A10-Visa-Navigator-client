@@ -22,7 +22,10 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/all-visas", element: <AllVisas></AllVisas> },
+      {
+        path: "/all-visas", element: <AllVisas></AllVisas>,
+        loader: () => fetch('http://localhost:5000/Visa')
+      },
       {
         path: "/add-visa",
         element: <PrivateRoutes><AddVisa></AddVisa></PrivateRoutes>,
