@@ -37,6 +37,18 @@ const Login = () => {
         e.target.reset();
     };
 
+    const handleGoogleLogin = () => {
+        googleLogin()
+            .then(() => {
+                navigate(from, { replace: true });
+            })
+            .catch((error) => {
+                console.error("Google Login Error:", error);
+                toast.error("Google Login failed: " + error.message);
+            });
+    };
+    
+
     return (
         <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-indigo-500 to-purple-600">
             <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-lg">
@@ -89,7 +101,7 @@ const Login = () => {
                 <div className="divider mt-6 text-gray-500">OR</div>
 
                 <button
-                    onClick={googleLogin}
+                    onClick={handleGoogleLogin}
                     className="w-full py-3 flex items-center justify-center gap-2 bg-red-500 text-white rounded-lg hover:bg-red-600 mt-4"
                 >
                     <FaGoogle />

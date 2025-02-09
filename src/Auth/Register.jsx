@@ -56,6 +56,18 @@ const Register = () => {
     e.target.reset()
   };
 
+  const handleGoogleLogin = () => {
+    googleLogin()
+        .then(() => {
+            navigate(from, { replace: true }); 
+        })
+        .catch((error) => {
+            console.error("Google Login Error:", error);
+            toast.error("Google Login failed: " + error.message);
+        });
+};
+
+
 
   return (
     <div>
@@ -131,7 +143,7 @@ const Register = () => {
 
             <div className="flex justify-center -mt-8">
               <button
-                onClick={googleLogin}
+                onClick={handleGoogleLogin}
                 className="px-20 py-3 flex items-center justify-center gap-2 bg-red-500 text-white rounded-lg hover:bg-red-600 mt-4"
               >
                 <FaGoogle />
