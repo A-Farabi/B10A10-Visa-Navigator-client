@@ -22,7 +22,7 @@ const AddVisa = () => {
       }
     }
   
-    fetch('http://localhost:5000/Visa', {
+    fetch('https://b10-a10-visa-navigator-server-3f6gc3175-a-farabis-projects.vercel.app/Visa', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(formData),

@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       {
         path: "/all-visas", element: <AllVisas></AllVisas>,
-        loader: () => fetch('http://localhost:5000/Visa')
+        loader: () => fetch('https://b10-a10-visa-navigator-server-3f6gc3175-a-farabis-projects.vercel.app/Visa')
       },
       {
         path: "/add-visa",
@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         element: <PrivateRoutes>
           <MyVisaApplication></MyVisaApplication>
           </PrivateRoutes>,
-          loader: ()=> fetch('http://localhost:5000/appliedVisa')
+          loader: ()=> fetch('https://b10-a10-visa-navigator-server-3f6gc3175-a-farabis-projects.vercel.app/appliedVisa')
       },
       {
         path: "/login", element:
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         element: <PrivateRoutes>
           <VisaDetail></VisaDetail>
         </PrivateRoutes>,
-        loader: ({params}) => fetch(`http://localhost:5000/visa/${params.id}`)
+        loader: ({params}) => fetch(`https://b10-a10-visa-navigator-server-3f6gc3175-a-farabis-projects.vercel.app/visa/${params.id}`)
       },
     ],
   },

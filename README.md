@@ -1,8 +1,13 @@
-# React + Vite
+# Visa Navigator  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[Live Site URL](https://b10a10-visa-navigator.web.app/)  
 
-Currently, two official plugins are available:
+Visa Navigator is a user-friendly platform designed to simplify the visa application process, provide comprehensive visa information, and track your application status in real-time.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features  
+
+- **Simplified Visa Application**: An intuitive interface to help users apply for visas easily and securely.  
+- **Real-Time Application Tracking**: Get instant updates on the status of your visa application.  
+- **Comprehensive Information Hub**: Access detailed information about visa requirements for multiple countries.  
+- **Secure and Reliable Platform**: Robust data security to ensure that your information remains protected.  
+- **Responsive Design**: Enjoy a seamless experience on desktop, tablet, and mobile devices.  

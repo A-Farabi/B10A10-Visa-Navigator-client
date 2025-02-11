@@ -7,7 +7,7 @@ const LatestVisas = () => {
 
   useEffect(() => {
     // Fetch data for visas
-    fetch("http://localhost:5000/visa")
+    fetch("https://b10-a10-visa-navigator-server-3f6gc3175-a-farabis-projects.vercel.app/visa")
       .then((res) => res.json())
       .then((data) => {
         // Limit to the latest 6 visas

@@ -21,7 +21,7 @@ const VisaDetail = () => {
         };
         console.log("Application Submitted:", applyFormData);
 
-        fetch('http://localhost:5000/appliedVisa', {
+        fetch('https://b10-a10-visa-navigator-server-3f6gc3175-a-farabis-projects.vercel.app/appliedVisa', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

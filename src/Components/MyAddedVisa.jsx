@@ -9,7 +9,7 @@ const MyAddedVisa = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:5000/Visa?email=${user.email}`)
+      fetch(`https://b10-a10-visa-navigator-server-3f6gc3175-a-farabis-projects.vercel.app/Visa?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => setAddedVisas(data));
     }
@@ -24,7 +24,7 @@ const MyAddedVisa = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/Visa/${id}`, {
+        fetch(`https://b10-a10-visa-navigator-server-3f6gc3175-a-farabis-projects.vercel.app/Visa/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -53,7 +53,7 @@ const MyAddedVisa = () => {
       application_method: e.target.application_method.value,
     };
 
-    fetch(`http://localhost:5000/Visa/${editingVisa._id}`, {
+    fetch(`https://b10-a10-visa-navigator-server-3f6gc3175-a-farabis-projects.vercel.app/Visa/${editingVisa._id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedVisa),
