@@ -1,6 +1,7 @@
 # Visa Navigator  
 
 [Live Site URL](https://b10a10-visa-navigator.web.app/)  
+[Live Site URL(server)](https://b10-a10-visa-navigator-server.vercel.app/) 
 
 Visa Navigator is a user-friendly platform designed to simplify the visa application process, provide comprehensive visa information, and track your application status in real-time.  
 
