@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Auth/AuthProvider";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -92,7 +93,10 @@ const Navbar = () => {
               src={user.photoURL || "https://via.placeholder.com/150"}
               alt="User Avatar"
               className="w-10 h-10 rounded-full object-cover border"
-            />
+               data-tooltip-id="my-tooltip" data-tooltip-content={user.email}
+              />
+              
+              <Tooltip id="my-tooltip" className="z-50"></Tooltip>
             <button
               onClick={handleLogout}
               className="btn btn-outline btn-error"
